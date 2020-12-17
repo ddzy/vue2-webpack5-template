@@ -1,0 +1,8 @@
+{
+  "name": "vue2-webpack5-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ddzy/vue2-webpack5-template.git",
+  "author": "ddzy <1766083035@qq.com>",
+  "license": "MIT"
+}
