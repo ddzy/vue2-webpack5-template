@@ -1,6 +1,9 @@
+// import { deepCopy } from './utils/index';
+import { deepCopy } from '@/utils/index';
+
 import './global.scss';
 
-function createElement(type, props) {
+function createElement(type: string, props: { [key: string]: any }) {
   const element = document.createElement(type);
 
   for (const key in props) {
@@ -19,3 +22,5 @@ const element = createElement('div', {
 })
 
 document.body.appendChild(element);
+
+console.log('deepCopy({ name: "duanzhaoyang", age: 22 }) :>>', deepCopy({ name: 'duanzhaoyang', age: 22 }));

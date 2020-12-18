@@ -1,10 +1,11 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Webpack = require('webpack');
+import * as path from 'path';
+import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import * as Webpack from 'webpack';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
-module.exports = {
-  entry: './src/main.js',
+export default {
+  entry: './src/main.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
@@ -26,6 +27,14 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.ts$/,
+        use: [
+          {
+            loader: 'ts-loader',
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -35,6 +44,13 @@ module.exports = {
     }),
     new Webpack.HotModuleReplacementPlugin(),
   ],
+  resolve: {
+    extensions: ['.ts', '.js'],
+    plugins: [
+      // 将 tsconfig 中配置的路径别名映射到 webpack.resolve.alias 上
+      new TsconfigPathsPlugin()
+    ],
+  },
   devtool: process.env.NODE_ENV === 'development' ? 'eval-source-map' : 'source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
@@ -45,4 +61,4 @@ module.exports = {
     clientLogLevel: 'silent',
     noInfo: true,
   },
-};
+} as Webpack.Configuration;
