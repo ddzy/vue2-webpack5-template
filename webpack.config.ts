@@ -61,7 +61,7 @@ export default {
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      title: 'vue2-webpack5-template',
+      template: 'src/index.html',
     }),
     new Webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
