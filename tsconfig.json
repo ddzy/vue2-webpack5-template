@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "rootDir": ".",
     "allowJs": true,
+    "experimentalDecorators": true,
     "paths": {
       "@/*": [
         "src/*"
@@ -14,8 +15,6 @@
   },
   "include": [
     "src/**/*",
-    "./images.d.ts",
-    "./files.d.ts"
   ],
   "exclude": [
     "node_modules",

@@ -5,6 +5,8 @@ import * as Webpack from 'webpack';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
+const VueLoaderPlugin = require('vue-loader/lib/plugin-webpack5');
+
 export default {
   entry: './src/main.ts',
   output: {
@@ -33,6 +35,17 @@ export default {
         use: [
           {
             loader: 'ts-loader',
+            options: {
+              appendTsSuffixTo: [/\.vue$/],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.vue$/,
+        use: [
+          {
+            loader: 'vue-loader',
           },
         ],
       },
@@ -65,9 +78,13 @@ export default {
     }),
     new Webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
+    new VueLoaderPlugin(),
+    new Webpack.ProvidePlugin({
+      Vue: ['vue/dist/vue.esm.js', 'default']
+    })
   ],
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.js', '.vue'],
     plugins: [
       // 将 tsconfig 中配置的路径别名映射到 webpack.resolve.alias 上
       new TsconfigPathsPlugin()
