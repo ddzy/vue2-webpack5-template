@@ -38,6 +38,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@babel/runtime": "^7.12.5",
     "vue": "^2.6.12",
     "vue-class-component": "^7.2.6",

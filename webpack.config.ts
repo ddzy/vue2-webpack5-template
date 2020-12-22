@@ -8,7 +8,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 const VueLoaderPlugin = require('vue-loader/lib/plugin-webpack5');
 console.log('process.env.NODE_ENV :>> ', process.env.NODE_ENV);
 export default {
-  entry: './src/main.ts',
+  entry: ['@babel/polyfill', './src/main.ts'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
