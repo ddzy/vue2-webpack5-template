@@ -2,6 +2,8 @@
   <div class="app-main-wrapper">
     <button class="btn" @click="handleIncrement">Click me</button>
     <p class="display">{{ count }}</p>
+    <p class="display2">{{ inputValue }}</p>
+    <input type="text" v-model="inputValue">
   </div>
 </template>
 
@@ -11,6 +13,7 @@ import { Component } from "vue-property-decorator";
 @Component
 export default class App extends Vue {
   public count: number = 0;
+  public inputValue: string = '';
 
   handleIncrement() {
     this.count++;

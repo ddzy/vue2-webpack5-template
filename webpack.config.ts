@@ -6,7 +6,7 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin-webpack5');
-
+console.log('process.env.NODE_ENV :>> ', process.env.NODE_ENV);
 export default {
   entry: './src/main.ts',
   output: {
@@ -30,14 +30,23 @@ export default {
           },
         ],
       },
+      // {
+      //   test: /\.ts$/,
+      //   use: [
+      //     {
+      //       loader: 'ts-loader',
+      //       options: {
+      //         appendTsSuffixTo: [/\.vue$/],
+      //       },
+      //     },
+      //   ],
+      // },
       {
-        test: /\.ts$/,
+        test: /\.ts|js$/,
+        exclude: /node_modules/,
         use: [
           {
-            loader: 'ts-loader',
-            options: {
-              appendTsSuffixTo: [/\.vue$/],
-            },
+            loader: 'babel-loader',
           },
         ],
       },
@@ -81,6 +90,9 @@ export default {
     new VueLoaderPlugin(),
     new Webpack.ProvidePlugin({
       Vue: ['vue/dist/vue.esm.js', 'default']
+    }),
+    new Webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
     })
   ],
   resolve: {
