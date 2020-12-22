@@ -3,13 +3,7 @@
     [
       "@babel/preset-env",
       {
-        "useBuiltIns": false,
-        "targets": {
-          "browsers": [
-            "> 1%",
-            "last 3 versions"
-          ]
-        }
+        "useBuiltIns": false
       }
     ],
     [

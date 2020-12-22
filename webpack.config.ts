@@ -6,7 +6,9 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin-webpack5');
+
 console.log('process.env.NODE_ENV :>> ', process.env.NODE_ENV);
+
 export default {
   entry: ['@babel/polyfill', './src/main.ts'],
   output: {
@@ -26,21 +28,23 @@ export default {
             loader: 'css-loader',
           },
           {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    "postcss-preset-env",
+                    {},
+                  ]
+                ],
+              },
+            },
+          },
+          {
             loader: 'sass-loader',
           },
         ],
       },
-      // {
-      //   test: /\.ts$/,
-      //   use: [
-      //     {
-      //       loader: 'ts-loader',
-      //       options: {
-      //         appendTsSuffixTo: [/\.vue$/],
-      //       },
-      //     },
-      //   ],
-      // },
       {
         test: /\.ts|js$/,
         exclude: /node_modules/,

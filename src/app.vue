@@ -4,6 +4,12 @@
     <p class="display">{{ count }}</p>
     <p class="display2">{{ inputValue }}</p>
     <input type="text" v-model="inputValue">
+    <ul class="list">
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+    </ul>
   </div>
 </template>
 
@@ -26,5 +32,15 @@ export default class App extends Vue {
     border: none;
     outline: none;
     background-color: #1890ff;
+  }
+  .list {
+    display: flex;
+    justify-content: flex-start;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    .item {
+
+    }
   }
 </style>
